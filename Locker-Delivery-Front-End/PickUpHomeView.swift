@@ -37,31 +37,30 @@ struct PickUpHomeView: View {
 struct ListOrders: View {
     var order: Order
     var body: some View {
-        ExDivider()
-        NavigationLink(destination: LoginView()) {
-            VStack(spacing: 15) {
-                VStack {
-                    HStack(spacing: 20) {
-                        Text(order.item).font(Font.MenuBold)
-                            .frame(width: 150, alignment: .leading)
-                        Text(order.status).font(Font.MenuBold)
-                            .frame(width: 150, alignment: .trailing)
-                            .foregroundColor(Color.yellow)
-                    }
-                    HStack(spacing: 20) {
-                        Text(order.name).font(Font.MenuBold)
-                            .frame(width: 150, alignment: .leading)
-                            .foregroundColor(Color.gray)
-                            
-                        Text(order.date).font(Font.MenuBold)
-                            .frame(width: 150, alignment: .trailing)
-                            .foregroundColor(Color.gray)
-                    }
+    ExDivider()
+        VStack(spacing: 15) {
+            VStack {
+                HStack(spacing: 20) {
+                    Text(order.item).font(Font.MenuBold)
+                        .frame(width: 150, alignment: .leading)
+                    Text(order.status).font(Font.MenuBold)
+                        .frame(width: 150, alignment: .trailing)
+                        .foregroundColor(Color.yellow)
+                }
+                HStack(spacing: 20) {
+                    Text(order.name).font(Font.MenuBold)
+                        .frame(width: 150, alignment: .leading)
+                        .foregroundColor(Color.gray)
+                        
+                    Text(order.date).font(Font.MenuBold)
+                        .frame(width: 150, alignment: .trailing)
+                        .foregroundColor(Color.gray)
                 }
             }
         }
     }
 }
+
 
 struct ExDivider: View {
     let color: Color = .black

@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
+    
+    @Binding var next: Int
+    @Binding var uid: String
+    
     @State private var username: String = ""
     @State private var password: String = ""
     @State var signInSuccess = false
@@ -24,7 +29,7 @@ struct LoginView: View {
                     .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
                 ZStack {
                     Image("Textbox")
-                    TextField("Username", text: $username).font(Font.TextField).frame(width: 300, alignment: .center)
+                    TextField("Email", text: $username).font(Font.TextField).frame(width: 300, alignment: .center)
                         .foregroundColor(.black)
                 }
                 
@@ -40,11 +45,13 @@ struct LoginView: View {
                         .frame(width: 300, alignment: .center)
                 }
                 
-                NavigationLink(destination: MainView()) {
-                    Image("SignIn")
-                }
+                Button (action: {
+                    Login()
+                }) { Image("SignIn") }
                 Spacer()
-                NavigationLink(destination: SignUpView()) {
+                Button (action: {
+                    next = Constants.Views.signup
+                }) {
                     Text("Don't have an Account? Sign up").font(Font.SubTitle)
                         .frame(width: 350, alignment: .center)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
@@ -52,10 +59,51 @@ struct LoginView: View {
             }
         }.navigationBarBackButtonHidden(true)
     }
+    
+    func validateLoginFields() -> String? {
+        
+        if (password == "") {
+            return "Please Enter a Password"
+        } else if (username == "") {
+            return "Please enter an Email"
+        }
+        
+        return nil
+    }
+    
+    func Login() {
+        
+        //Validate Text Fields
+        
+        let error = validateLoginFields()
+        
+        if error != nil {
+            // TODO: Add Error Message
+            return
+        }
+        
+        // Signing in User
+        
+        let email = username.trimmingCharacters(in: .whitespacesAndNewlines)
+        let psswd = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        Auth.auth().signIn(withEmail: email, password: psswd) { (result, error) in
+            
+            if error != nil {
+                // TODO: Add Log in failure message
+            } else {
+                uid = result!.user.uid
+                next = Constants.Views.main
+            }
+            
+        }
+        
+    }
+    
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//    }
+//}

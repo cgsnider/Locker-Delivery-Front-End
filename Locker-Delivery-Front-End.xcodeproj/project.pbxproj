@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5616CDDB28FE05EC000D196C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDA28FE05EC000D196C /* Constants.swift */; };
+		5616CDDD28FE0C56000D196C /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDC28FE0C56000D196C /* Utility.swift */; };
+		5616CDDF28FE1074000D196C /* PrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDE28FE1074000D196C /* PrintView.swift */; };
 		566D7B2B28F8E59F0015A3A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 566D7B2A28F8E59F0015A3A4 /* GoogleService-Info.plist */; };
 		566D7B2E28F8E6EA0015A3A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 566D7B2D28F8E6EA0015A3A4 /* FirebaseAuth */; };
 		566D7B3028F8E6EA0015A3A4 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 566D7B2F28F8E6EA0015A3A4 /* FirebaseAuthCombine-Community */; };
@@ -54,6 +57,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5616CDDA28FE05EC000D196C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5616CDDC28FE0C56000D196C /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		5616CDDE28FE1074000D196C /* PrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintView.swift; sourceTree = "<group>"; };
 		566D7B2A28F8E59F0015A3A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		566D7B4128F90C4B0015A3A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DE02EEF128F7452800D6A1F9 /* PickUpHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpHomeView.swift; sourceTree = "<group>"; };
@@ -159,6 +165,9 @@
 				DE02EEF728F865D500D6A1F9 /* Order.swift */,
 				DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */,
 				566D7B4128F90C4B0015A3A4 /* ContentView.swift */,
+				5616CDDA28FE05EC000D196C /* Constants.swift */,
+				5616CDDC28FE0C56000D196C /* Utility.swift */,
+				5616CDDE28FE1074000D196C /* PrintView.swift */,
 			);
 			path = "Locker-Delivery-Front-End";
 			sourceTree = "<group>";
@@ -336,14 +345,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8D2D0528EF6F3F0027839E /* LoginView.swift in Sources */,
+				5616CDDB28FE05EC000D196C /* Constants.swift in Sources */,
 				DE02EEF428F7501500D6A1F9 /* MainView.swift in Sources */,
 				DE02EEF228F7452800D6A1F9 /* PickUpHomeView.swift in Sources */,
 				DE59E5CC28F7276B0042D9F6 /* SignUpView.swift in Sources */,
 				DE8D2D0328EF6F3F0027839E /* Locker_Delivery_Front_EndApp.swift in Sources */,
 				DE5E110028F081A900A6BF52 /* FontStyles.swift in Sources */,
 				566D7B4228F90C4B0015A3A4 /* ContentView.swift in Sources */,
+				5616CDDD28FE0C56000D196C /* Utility.swift in Sources */,
 				DE02EEF828F865D500D6A1F9 /* Order.swift in Sources */,
 				DE02EEF628F7542A00D6A1F9 /* DropOffsHomeView.swift in Sources */,
+				5616CDDF28FE1074000D196C /* PrintView.swift in Sources */,
 				DE02EEFA28F8719800D6A1F9 /* PickUpLocationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -485,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -503,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Locker-Delivery-Front-End/Preview Content\"";
-				DEVELOPMENT_TEAM = 3JP29P3XG7;
+				DEVELOPMENT_TEAM = F6259K46X3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Locker-Delivery-Front-End/Info.plist";

@@ -11,12 +11,12 @@ import FirebaseCore
 @main
 struct Locker_Delivery_Front_EndApp: App {
     // register app delegate for Firebase setup
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ContentView()
         }
     }
 }
@@ -25,10 +25,10 @@ struct Locker_Delivery_Front_EndApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 
-  func application(_ application: UIApplication,
+    func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
     return true
-  }
+    }
 }
 

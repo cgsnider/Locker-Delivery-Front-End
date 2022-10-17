@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @Binding var next: Int
+    @State var uid: String
+    
     @State private var selection = 0
+    
     var body: some View {
         TabView(selection: $selection) {
             PickUpHomeView()
@@ -21,10 +26,6 @@ struct MainView: View {
                 }.tag(1)
         }.frame(alignment: .bottom)
     }
+
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}

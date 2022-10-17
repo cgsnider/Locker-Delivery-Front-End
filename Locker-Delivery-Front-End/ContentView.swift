@@ -9,22 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     
-    
-    
-    @State var view = SignUpView();
-    
+   
+    @State var uid = ""
+    @State var curr = Constants.Views.login
     
     
     var body: some View {
-        VStack {
-            view
+        
+        if (curr == Constants.Views.login) {
+            LoginView(next: $curr, uid: $uid)
+        } else if curr == Constants.Views.signup {
+            SignUpView(next: $curr)
+        } else if curr == Constants.Views.main {
+            MainView(next: $curr, uid: uid)
+        } else if curr == Constants.Views.print {
+            PrintView(data:uid)
         }
-
+            
+        
     }
     
-//    func to(nextView: any View) {
-//        view = nextView
-//    }
     
 }
 
