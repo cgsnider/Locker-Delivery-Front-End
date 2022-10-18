@@ -9,14 +9,62 @@ import SwiftUI
 
 
 struct PickUpLocationView: View {
+    @Binding var next: Int
+    @Binding var order: Order
     var body: some View {
-        ScrollView {
+        VStack (spacing: 25) {
+            Spacer()
+            Text(order.item).font(Font.CreateTitle)
+                .frame(width: 300, alignment: .center)
+            ExDivider()
             VStack {
-                ForEach(getOrders()) {
-                    order in ListOrders(order: order)
-                }
-                ExDivider()
-                Spacer()
+                Text("Status:").font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                Text(order.status).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                    .foregroundColor(Color.yellow)
+            }
+            VStack {
+                Text("Pick Up Location:").font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                Text(order.address).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                    .foregroundColor(Color.gray)
+                Text(order.city + ", " + order.state).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                    .foregroundColor(Color.gray)
+                Text(String(order.zipcode)).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                    .foregroundColor(Color.gray)
+            }
+            VStack {
+                Text("Sender:").font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                Text(order.sender).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                    .foregroundColor(Color.gray)
+            }
+            VStack {
+                Text("Contact Info:").font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                Text(order.sender_number).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                    .foregroundColor(Color.gray)
+                Text(order.sender_email).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                    .foregroundColor(Color.gray)
+            }
+            VStack {
+                Text("Locker Code:").font(Font.CreateTitle)
+                    .frame(width: 300, alignment: .center)
+                Text(order.locker).font(Font.CreateTitle)
+                    .frame(width: 300, alignment: .center)
+            }
+            Spacer()
+            Button (action: {
+                next = Constants.Views.main
+            }) {
+                Image("Back")
             }
         }
     }

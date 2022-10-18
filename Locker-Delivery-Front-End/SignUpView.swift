@@ -15,6 +15,8 @@ struct SignUpView: View {
     
     @State private var username: String = ""
     @State private var password: String = ""
+    @State var signUpFailed = false
+    @State var errorMessage = ""
     
     var body: some View {
         VStack {
@@ -44,9 +46,11 @@ struct SignUpView: View {
             
             Button (action: {
                 signUp()
-            }) {
-                Image("SignUp")
-            }
+            }) { Image("SignUp") }.alert("Registration Failed", isPresented: $signUpFailed, actions: {
+                    Button("OK", role: .cancel) { }
+            }, message: {
+                Text(errorMessage)
+            })
             Spacer()
             
             Button (action: {
@@ -97,15 +101,19 @@ struct SignUpView: View {
         
         if error != nil {
             //Show error message because improper input to fields
-            print("Error Input")
-
+            errorMessage = error!
+            signUpFailed = true
+            return
         } else {
             // Create the user
             Auth.auth().createUser(withEmail: email, password: psswd) { (result, error) in
                 
                 if error != nil {
                     // Show error message
-                    print("Error Creating")
+                    print(error!)
+                    errorMessage = "Error Creating Account. Try Again"
+                    signUpFailed = true
+                    return
                 }else {
                     // User successfully created, now store relevant data in db
                     let db = Firestore.firestore()
@@ -116,7 +124,8 @@ struct SignUpView: View {
                         
                         if error != nil {
                             // Error if data could not be logged
-                            print("Error Logging")
+                            errorMessage = "Error Creating Account. Try Again"
+                            signUpFailed = true
                         }
                         
                     }

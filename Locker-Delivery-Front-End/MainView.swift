@@ -10,13 +10,14 @@ import SwiftUI
 struct MainView: View {
     
     @Binding var next: Int
-    @State var uid: String
+    @Binding var uid: String
+    @Binding var currOrder: Order
     
     @State private var selection = 0
     
     var body: some View {
         TabView(selection: $selection) {
-            PickUpHomeView()
+            PickUpHomeView(next: $next, currOrder: $currOrder)
                 .tabItem {
                     selection == 0 ? Image("Pick-ups-black") : Image("Pick-ups-white")
                 }.tag(0)

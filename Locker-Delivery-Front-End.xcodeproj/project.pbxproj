@@ -515,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Locker-Delivery-Front-End/Preview Content\"";
-				DEVELOPMENT_TEAM = F6259K46X3;
+				DEVELOPMENT_TEAM = 3JP29P3XG7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Locker-Delivery-Front-End/Info.plist";

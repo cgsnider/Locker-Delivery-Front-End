@@ -8,10 +8,21 @@
 //Put General Utility functions here
 
 
-import Foundation
+import SwiftUI
 
 struct Utiltiy {
     
   
     
+}
+
+struct ExDivider: View {
+    let color: Color = .black
+    let width: CGFloat = 2
+    var body: some View {
+        Rectangle()
+            .fill(color)
+            .frame(height: width)
+            .edgesIgnoringSafeArea(.horizontal)
+    }
 }

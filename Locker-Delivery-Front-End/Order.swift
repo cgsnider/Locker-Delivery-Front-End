@@ -11,6 +11,13 @@ struct Order: Identifiable {
     var id: Int
     var item : String
     var status : String
-    var name : String
     var date : String
+    var address: String
+    var city: String
+    var state: String
+    var zipcode: Int
+    var locker: String
+    var sender: String
+    var sender_number: String
+    var sender_email: String
 }

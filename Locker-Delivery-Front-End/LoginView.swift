@@ -15,7 +15,8 @@ struct LoginView: View {
     
     @State private var username: String = ""
     @State private var password: String = ""
-    @State var signInSuccess = false
+    @State var signInFailed = false
+    @State var errorMessage = ""
     
     
     var body: some View {
@@ -47,7 +48,11 @@ struct LoginView: View {
                 
                 Button (action: {
                     Login()
-                }) { Image("SignIn") }
+                }) { Image("SignIn") }.alert("Login Failed", isPresented: $signInFailed, actions: {
+                        Button("OK", role: .cancel) { }
+                }, message: {
+                    Text(errorMessage)
+                })
                 Spacer()
                 Button (action: {
                     next = Constants.Views.signup
@@ -78,7 +83,8 @@ struct LoginView: View {
         let error = validateLoginFields()
         
         if error != nil {
-            // TODO: Add Error Message
+            errorMessage = error!
+            signInFailed = true
             return
         }
         
@@ -90,7 +96,8 @@ struct LoginView: View {
         Auth.auth().signIn(withEmail: email, password: psswd) { (result, error) in
             
             if error != nil {
-                // TODO: Add Log in failure message
+                errorMessage = "Email or Password is incorrect. Try Again"
+                signInFailed = true
             } else {
                 uid = result!.user.uid
                 next = Constants.Views.main

@@ -14,7 +14,8 @@ struct Constants {
         static let login = 0
         static let signup = 1
         static let main = 2
-        static let print = 3
+        static let pickup = 3
+        static let print = 4
         
     }
     
