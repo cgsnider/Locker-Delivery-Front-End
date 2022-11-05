@@ -24,8 +24,9 @@
 		DE02EEF228F7452800D6A1F9 /* PickUpHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF128F7452800D6A1F9 /* PickUpHomeView.swift */; };
 		DE02EEF428F7501500D6A1F9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF328F7501500D6A1F9 /* MainView.swift */; };
 		DE02EEF628F7542A00D6A1F9 /* DropOffsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF528F7542A00D6A1F9 /* DropOffsHomeView.swift */; };
-		DE02EEF828F865D500D6A1F9 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF728F865D500D6A1F9 /* Order.swift */; };
+		DE02EEF828F865D500D6A1F9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF728F865D500D6A1F9 /* Transaction.swift */; };
 		DE02EEFA28F8719800D6A1F9 /* PickUpLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */; };
+		DE02EEFC2916D23400D6A1F9 /* CreateTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEFB2916D23400D6A1F9 /* CreateTransactionView.swift */; };
 		DE59E5CC28F7276B0042D9F6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59E5CB28F7276B0042D9F6 /* SignUpView.swift */; };
 		DE5E10FC28F0803C00A6BF52 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE5E10FA28F0803B00A6BF52 /* Inter-Regular.otf */; };
 		DE5E10FD28F0803C00A6BF52 /* Inter-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE5E10FB28F0803C00A6BF52 /* Inter-SemiBold.otf */; };
@@ -65,8 +66,9 @@
 		DE02EEF128F7452800D6A1F9 /* PickUpHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpHomeView.swift; sourceTree = "<group>"; };
 		DE02EEF328F7501500D6A1F9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DE02EEF528F7542A00D6A1F9 /* DropOffsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropOffsHomeView.swift; sourceTree = "<group>"; };
-		DE02EEF728F865D500D6A1F9 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		DE02EEF728F865D500D6A1F9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpLocationView.swift; sourceTree = "<group>"; };
+		DE02EEFB2916D23400D6A1F9 /* CreateTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionView.swift; sourceTree = "<group>"; };
 		DE59E5CB28F7276B0042D9F6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		DE5E10FA28F0803B00A6BF52 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
 		DE5E10FB28F0803C00A6BF52 /* Inter-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.otf"; sourceTree = "<group>"; };
@@ -158,11 +160,12 @@
 				DE59E5CB28F7276B0042D9F6 /* SignUpView.swift */,
 				DE02EEF328F7501500D6A1F9 /* MainView.swift */,
 				DE02EEF128F7452800D6A1F9 /* PickUpHomeView.swift */,
+				DE02EEFB2916D23400D6A1F9 /* CreateTransactionView.swift */,
 				DE5E10F928F0801200A6BF52 /* Fonts */,
 				DE8D2D0628EF6F460027839E /* Assets.xcassets */,
 				DE8D2D0828EF6F460027839E /* Preview Content */,
 				DE5E10FF28F081A900A6BF52 /* FontStyles.swift */,
-				DE02EEF728F865D500D6A1F9 /* Order.swift */,
+				DE02EEF728F865D500D6A1F9 /* Transaction.swift */,
 				DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */,
 				566D7B4128F90C4B0015A3A4 /* ContentView.swift */,
 				5616CDDA28FE05EC000D196C /* Constants.swift */,
@@ -349,11 +352,12 @@
 				DE02EEF428F7501500D6A1F9 /* MainView.swift in Sources */,
 				DE02EEF228F7452800D6A1F9 /* PickUpHomeView.swift in Sources */,
 				DE59E5CC28F7276B0042D9F6 /* SignUpView.swift in Sources */,
+				DE02EEFC2916D23400D6A1F9 /* CreateTransactionView.swift in Sources */,
 				DE8D2D0328EF6F3F0027839E /* Locker_Delivery_Front_EndApp.swift in Sources */,
 				DE5E110028F081A900A6BF52 /* FontStyles.swift in Sources */,
 				566D7B4228F90C4B0015A3A4 /* ContentView.swift in Sources */,
 				5616CDDD28FE0C56000D196C /* Utility.swift in Sources */,
-				DE02EEF828F865D500D6A1F9 /* Order.swift in Sources */,
+				DE02EEF828F865D500D6A1F9 /* Transaction.swift in Sources */,
 				DE02EEF628F7542A00D6A1F9 /* DropOffsHomeView.swift in Sources */,
 				5616CDDF28FE1074000D196C /* PrintView.swift in Sources */,
 				DE02EEFA28F8719800D6A1F9 /* PickUpLocationView.swift in Sources */,

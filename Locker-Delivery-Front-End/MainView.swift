@@ -11,17 +11,17 @@ struct MainView: View {
     
     @Binding var next: Int
     @Binding var uid: String
-    @Binding var currOrder: Order
+    @Binding var currTransaction: Transaction
     
     @State private var selection = 0
     
     var body: some View {
         TabView(selection: $selection) {
-            PickUpHomeView(next: $next, currOrder: $currOrder)
+            PickUpHomeView(next: $next, currTransaction: $currTransaction)
                 .tabItem {
                     selection == 0 ? Image("Pick-ups-black") : Image("Pick-ups-white")
                 }.tag(0)
-            DropOffsHomeView()
+            DropOffsHomeView(next: $next, currTransaction: $currTransaction)
                 .tabItem {
                     selection == 1 ? Image("Drop-offs-black") : Image("Drop-offs-white")
                 }.tag(1)

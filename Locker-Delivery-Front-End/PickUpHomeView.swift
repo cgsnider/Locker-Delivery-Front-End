@@ -7,65 +7,53 @@
 
 import SwiftUI
 
-// This function will be replaced during firebase connection
-func getOrders() -> [Order] {
-    let orders = [
-        Order(id: 0, item: "Sony Fx3 Camera", status: "Order Request", date: "10/12/22", address: "86 5th St NW", city: "Atlanta",
-              state: "Georgia", zipcode: 30308, locker: "82W3X9", sender: "John Doe", sender_number: "100-200-3000", sender_email: "johnsmith@gmail.com"),
-        Order(id: 1, item: "random 2", status: "Order Request", date: "10/12/22", address: "86 5th St NW", city: "Atlanta",
-              state: "Georgia", zipcode: 30308, locker: "82W3X9", sender: "John Doe", sender_number: "100-200-3000", sender_email: "johnsmith@gmail.com"),
-        Order(id: 2, item: "radom 3", status: "Order Request", date: "10/12/22", address: "86 5th St NW", city: "Atlanta",
-              state: "Georgia", zipcode: 30308, locker: "82W3X9", sender: "John Doe", sender_number: "100-200-3000", sender_email: "johnsmith@gmail.com"),
-        Order(id: 3, item: "random 4", status: "Order Request", date: "10/12/22", address: "86 5th St NW", city: "Atlanta",
-              state: "Georgia", zipcode: 30308, locker: "82W3X9", sender: "John Doe", sender_number: "100-200-3000", sender_email: "johnsmith@gmail.com"),
-        Order(id: 4, item: "random 5", status: "Order Request", date: "10/12/22", address: "86 5th St NW", city: "Atlanta",
-              state: "Georgia", zipcode: 30308, locker: "82W3X9", sender: "John Doe", sender_number: "100-200-3000", sender_email: "johnsmith@gmail.com")
-    ]
-    return orders
-}
-
 
 struct PickUpHomeView: View {
     @Binding var next: Int
-    @Binding var currOrder: Order
+    @Binding var currTransaction: Transaction
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(getOrders()) {
-                    order in ListOrders(next: $next, currOrder: $currOrder, order: order)
+        VStack(spacing: 50) {
+            Text("Pick Ups").font(Font.Title)
+                .frame(width: 300, alignment: .center)
+            ScrollView {
+                VStack {
+                    ForEach(getTransactions()) {
+                        transaction in PickUpListTransactions(next: $next, currTransaction: $currTransaction, transaction: transaction)
+                    }
+                    ExDivider()
+                    Spacer()
                 }
-                ExDivider()
-                Spacer()
             }
+            Spacer()
         }
     }
 }
 
-struct ListOrders: View {
+struct PickUpListTransactions: View {
     @Binding var next: Int
-    @Binding var currOrder: Order
-    var order: Order
+    @Binding var currTransaction: Transaction
+    var transaction: Transaction
     var body: some View {
     ExDivider()
         VStack(spacing: 15) {
             Button (action: {
                 next = Constants.Views.pickup
-                currOrder = order
+                currTransaction = transaction
             }) {
                 VStack {
                     HStack(spacing: 20) {
-                        Text(order.item).font(Font.MenuBold)
+                        Text(transaction.item).font(Font.MenuBold)
                             .frame(width: 150, alignment: .leading)
-                        Text(order.status).font(Font.MenuBold)
+                        Text(transaction.status).font(Font.MenuBold)
                             .frame(width: 150, alignment: .trailing)
                             .foregroundColor(Color.yellow)
                     }
                     HStack(spacing: 20) {
-                        Text(order.sender).font(Font.MenuBold)
+                        Text(transaction.sender).font(Font.MenuBold)
                             .frame(width: 150, alignment: .leading)
                             .foregroundColor(Color.gray)
                         
-                        Text(order.date).font(Font.MenuBold)
+                        Text(transaction.date).font(Font.MenuBold)
                             .frame(width: 150, alignment: .trailing)
                             .foregroundColor(Color.gray)
                     }

@@ -14,7 +14,11 @@ extension Font {
     }
     
     static var CreateTitle: Font {
-        return Font.custom("Inter-SemiBold", size: 39)
+        return Font.custom("Inter-SemiBold", size: 33)
+    }
+    
+    static var SubTitle2: Font {
+        return Font.custom("Inter-SemiBold", size: 27)
     }
     
     static var SubTitle: Font {
