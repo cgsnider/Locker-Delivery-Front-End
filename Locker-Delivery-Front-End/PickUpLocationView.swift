@@ -22,7 +22,7 @@ struct PickUpLocationView: View {
                     .frame(width: 300, alignment: .center)
                 Text(transaction.status).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                    .foregroundColor(Color.yellow)
+                    .foregroundColor(getStatusColor(status: transaction.status))
             }
             VStack {
                 Text("Pick Up Location:").font(Font.SubTitle)

@@ -45,8 +45,8 @@ struct PickUpListTransactions: View {
                         Text(transaction.item).font(Font.MenuBold)
                             .frame(width: 150, alignment: .leading)
                         Text(transaction.status).font(Font.MenuBold)
-                            .frame(width: 150, alignment: .trailing)
-                            .foregroundColor(Color.yellow)
+                            .frame(width: 170, alignment: .trailing)
+                            .foregroundColor(getStatusColor(status: transaction.status))
                     }
                     HStack(spacing: 20) {
                         Text(transaction.sender).font(Font.MenuBold)
@@ -54,7 +54,7 @@ struct PickUpListTransactions: View {
                             .foregroundColor(Color.gray)
                         
                         Text(transaction.date).font(Font.MenuBold)
-                            .frame(width: 150, alignment: .trailing)
+                            .frame(width: 170, alignment: .trailing)
                             .foregroundColor(Color.gray)
                     }
                 }

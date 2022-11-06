@@ -55,7 +55,7 @@ struct DropOffsListTransactions: View {
                             .frame(width: 150, alignment: .leading)
                         Text(transaction.status).font(Font.MenuBold)
                             .frame(width: 150, alignment: .trailing)
-                            .foregroundColor(Color.yellow)
+                            .foregroundColor(getStatusColor(status: transaction.status))
                     }
                     HStack(spacing: 20) {
                         Text(transaction.receiver).font(Font.MenuBold)

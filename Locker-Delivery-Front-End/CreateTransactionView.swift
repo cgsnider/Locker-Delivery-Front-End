@@ -47,7 +47,7 @@ struct CreateTransactionView: View {
             }
             
             VStack(spacing:40) {
-                // Update this when Adding order to database
+                // Update this when Adding transaction to database
                 Button (action: {
                     next = Constants.Views.main
                 }) {
