@@ -10,9 +10,9 @@ import SwiftUI
 struct ContentView: View {
     
    
-    @State var uid = ""
+    @State var uid = "82dgNyxMvTi2oMLSl3Ue"
     @State var curr = Constants.Views.main
-    @State var currTransaction = Transaction(id: 0, item: "",status: "", date: "", address: "", city: "", state: "", zipcode: 00000, locker: "", sender: "", sender_number: "", sender_email: "", receiver: "", receiver_number: "", receiver_email: "")
+    @State var currTransaction = blankTransaction()
     
     
     var body: some View {

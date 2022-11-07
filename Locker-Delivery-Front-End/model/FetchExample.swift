@@ -7,8 +7,3 @@
 
 import Foundation
 
-struct Example: Identifiable {
-    var id: String
-    var name: String
-    var notes: String
-}

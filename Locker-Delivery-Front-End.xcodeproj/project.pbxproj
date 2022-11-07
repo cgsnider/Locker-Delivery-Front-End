@@ -10,6 +10,8 @@
 		5616CDDB28FE05EC000D196C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDA28FE05EC000D196C /* Constants.swift */; };
 		5616CDDD28FE0C56000D196C /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDC28FE0C56000D196C /* Utility.swift */; };
 		5616CDDF28FE1074000D196C /* PrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDE28FE1074000D196C /* PrintView.swift */; };
+		563D39802918AE48007607A0 /* model in Resources */ = {isa = PBXBuildFile; fileRef = 563D397F2918AE48007607A0 /* model */; };
+		563D39822918AE68007607A0 /* FetchExampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563D39812918AE68007607A0 /* FetchExampleUI.swift */; };
 		566D7B2B28F8E59F0015A3A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 566D7B2A28F8E59F0015A3A4 /* GoogleService-Info.plist */; };
 		566D7B2E28F8E6EA0015A3A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 566D7B2D28F8E6EA0015A3A4 /* FirebaseAuth */; };
 		566D7B3028F8E6EA0015A3A4 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 566D7B2F28F8E6EA0015A3A4 /* FirebaseAuthCombine-Community */; };
@@ -61,6 +63,8 @@
 		5616CDDA28FE05EC000D196C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5616CDDC28FE0C56000D196C /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		5616CDDE28FE1074000D196C /* PrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintView.swift; sourceTree = "<group>"; };
+		563D397F2918AE48007607A0 /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
+		563D39812918AE68007607A0 /* FetchExampleUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchExampleUI.swift; sourceTree = "<group>"; };
 		566D7B2A28F8E59F0015A3A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		566D7B4128F90C4B0015A3A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DE02EEF128F7452800D6A1F9 /* PickUpHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpHomeView.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 		DE8D2D0128EF6F3F0027839E /* Locker-Delivery-Front-End */ = {
 			isa = PBXGroup;
 			children = (
+				563D397F2918AE48007607A0 /* model */,
 				DE5E10FE28F080AE00A6BF52 /* Info.plist */,
 				DE02EEF528F7542A00D6A1F9 /* DropOffsHomeView.swift */,
 				DE8D2D0228EF6F3F0027839E /* Locker_Delivery_Front_EndApp.swift */,
@@ -165,6 +170,7 @@
 				DE8D2D0628EF6F460027839E /* Assets.xcassets */,
 				DE8D2D0828EF6F460027839E /* Preview Content */,
 				DE5E10FF28F081A900A6BF52 /* FontStyles.swift */,
+				563D39812918AE68007607A0 /* FetchExampleUI.swift */,
 				DE02EEF728F865D500D6A1F9 /* Transaction.swift */,
 				DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */,
 				566D7B4128F90C4B0015A3A4 /* ContentView.swift */,
@@ -318,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563D39802918AE48007607A0 /* model in Resources */,
 				DE8D2D0A28EF6F460027839E /* Preview Assets.xcassets in Resources */,
 				DE5E10FC28F0803C00A6BF52 /* Inter-Regular.otf in Resources */,
 				566D7B2B28F8E59F0015A3A4 /* GoogleService-Info.plist in Resources */,
@@ -357,6 +364,7 @@
 				DE5E110028F081A900A6BF52 /* FontStyles.swift in Sources */,
 				566D7B4228F90C4B0015A3A4 /* ContentView.swift in Sources */,
 				5616CDDD28FE0C56000D196C /* Utility.swift in Sources */,
+				563D39822918AE68007607A0 /* FetchExampleUI.swift in Sources */,
 				DE02EEF828F865D500D6A1F9 /* Transaction.swift in Sources */,
 				DE02EEF628F7542A00D6A1F9 /* DropOffsHomeView.swift in Sources */,
 				5616CDDF28FE1074000D196C /* PrintView.swift in Sources */,

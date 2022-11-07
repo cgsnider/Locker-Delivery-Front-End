@@ -11,14 +11,26 @@ import SwiftUI
 struct PickUpHomeView: View {
     @Binding var next: Int
     @Binding var currTransaction: Transaction
+    let uid: String
+    
+    @ObservedObject var model = TransactionModel()
+    
+    init(next: Binding<Int>, currTransaction: Binding<Transaction>, uid: String, model: TransactionModel = TransactionModel()) {
+        self.uid = uid
+        self._next = next
+        self._currTransaction = currTransaction
+        self.model = model
+        model.getData(isReceiver: true, uid: uid)
+    }
+    
     var body: some View {
         VStack(spacing: 50) {
             Text("Pick Ups").font(Font.Title)
                 .frame(width: 300, alignment: .center)
             ScrollView {
                 VStack {
-                    ForEach(getTransactions()) {
-                        transaction in PickUpListTransactions(next: $next, currTransaction: $currTransaction, transaction: transaction)
+                    ForEach (model.list) { tran in
+                        PickUpListTransactions(next: $next, currTransaction: $currTransaction, transaction: tran)
                     }
                     ExDivider()
                     Spacer()

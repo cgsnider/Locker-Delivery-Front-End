@@ -10,16 +10,16 @@ import Firebase
 
 struct FetchExampleUI: View {
     
-    @ObservedObject var model = ViewModel()
+    @ObservedObject var model = TransactionModel()
     
     var body: some View {
         List (model.list) { item in
-            Text(item.name + " | " + item.notes)
+            Text(item.sender + " | " + item.date)
         }
     }
     
     init() {
-        model.getData()
+        model.getData(isReceiver: true, uid: "82dgNyxMvTi2oMLSl3Ue")
     }
 }
 
@@ -66,4 +66,11 @@ class ViewModel: ObservableObject {
         }
     }
     
+}
+
+
+struct Example: Identifiable {
+    var id: String
+    var name: String
+    var notes: String
 }
