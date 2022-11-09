@@ -70,15 +70,57 @@ class TransactionModel: ObservableObject {
             }
             
         }
-                    
-                
-                
-            
     }
-        
-    
-    
 }
+
+func postTransaction(sender_id: String, receiver_email: String, item: String, locker: String="None") async -> String? {
+    let db = Firestore.firestore()
+    
+    let date = Date()
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyyy"
+    
+    do {
+        
+        print("TEST 1")
+        print("ID: " + sender_id)
+        
+        let sender = try await db.collection("users").document(sender_id).getDocument()
+        
+        print("TEST 1.5")
+        
+        let receiver_documents = try await db.collection("users").whereField("email", isEqualTo: receiver_email.lowercased()).getDocuments().documents
+        
+        if receiver_documents.count != 1 {
+            return "Incorrect Username"
+        }
+        
+        let receiver = receiver_documents[0]
+        
+        print(receiver)
+        
+        print("TEST 2")
+
+        try await db.collection("transaction").document().setData([
+            "item" : item,
+            "locker": locker,
+            "receiver_email": receiver["email"] as? String ?? "Missing",
+            "receiver_id": receiver.documentID,
+            "receiver_number": receiver["number"] as? String ?? "Missing",
+            "sender_email": sender["email"] as? String ?? "Missing",
+            "sender_name": sender["name"] as? String ?? "Missing",
+            "sender_id": sender_id,
+            "status": "Awaiting Dropoff",
+            "date": dateFormatter.string(from: date)
+        ])
+        
+        return nil
+        
+    } catch {
+        return "Incorrect Email"
+    }
+}
+
 
 // Going to add another status for confirming a transaction
 func getStatusColor(status: String) -> Color {

@@ -49,7 +49,17 @@ struct CreateTransactionView: View {
             VStack(spacing:40) {
                 // Update this when Adding transaction to database
                 Button (action: {
-                    next = Constants.Views.main
+                    Task {
+                        let success = await postTransaction(sender_id: uid, receiver_email: receiver_email, item: item)
+                        if success == nil {
+                            next = Constants.Views.main
+                        } else {
+                            if let success = success {
+                                print(success)
+                            }
+                        }
+                
+                    }
                 }) {
                     Image("CreateTransaction")
                 }
