@@ -82,12 +82,7 @@ func postTransaction(sender_id: String, receiver_email: String, item: String, lo
     
     do {
         
-        print("TEST 1")
-        print("ID: " + sender_id)
-        
         let sender = try await db.collection("users").document(sender_id).getDocument()
-        
-        print("TEST 1.5")
         
         let receiver_documents = try await db.collection("users").whereField("email", isEqualTo: receiver_email.lowercased()).getDocuments().documents
         
@@ -96,10 +91,6 @@ func postTransaction(sender_id: String, receiver_email: String, item: String, lo
         }
         
         let receiver = receiver_documents[0]
-        
-        print(receiver)
-        
-        print("TEST 2")
 
         try await db.collection("transaction").document().setData([
             "item" : item,
