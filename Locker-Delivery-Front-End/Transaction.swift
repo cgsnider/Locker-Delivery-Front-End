@@ -73,12 +73,22 @@ class TransactionModel: ObservableObject {
     }
 }
 
-func postTransaction(sender_id: String, receiver_email: String, item: String, locker: String="None") async -> String? {
+func postTransaction(sender_id: String, receiver_email: String, item: String, locker: String) async -> String? {
     let db = Firestore.firestore()
     
     let date = Date()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"
+    
+    if (item == "") {
+        return "Please enter item name"
+    }
+    if (receiver_email == "") {
+        return "Please enter a receiver email"
+    }
+    if (locker == "Options") {
+        return "Please enter a locker location"
+    }
     
     do {
         
@@ -87,7 +97,7 @@ func postTransaction(sender_id: String, receiver_email: String, item: String, lo
         let receiver_documents = try await db.collection("users").whereField("email", isEqualTo: receiver_email.lowercased()).getDocuments().documents
         
         if receiver_documents.count != 1 {
-            return "Incorrect Username"
+            return "Receiver Email does not exist"
         }
         
         let receiver = receiver_documents[0]
@@ -101,7 +111,7 @@ func postTransaction(sender_id: String, receiver_email: String, item: String, lo
             "sender_email": sender["email"] as? String ?? "Missing",
             "sender_name": sender["name"] as? String ?? "Missing",
             "sender_id": sender_id,
-            "status": "Awaiting Dropoff",
+            "status": "Awaiting Confirmation",
             "date": dateFormatter.string(from: date)
         ])
         
@@ -115,15 +125,49 @@ func postTransaction(sender_id: String, receiver_email: String, item: String, lo
 
 // Going to add another status for confirming a transaction
 func getStatusColor(status: String) -> Color {
-    if (status == "Awaiting Dropoff") {
-        return Color.yellow
-    } else if (status == "Awaiting Pickup") {
+    if (status == "Awaiting Confirmation") {
         return Color.red
+    } else if (status == "Awaiting Dropoff") {
+        return Color.blue
+    } else if (status == "Awaiting Pickup") {
+        return Color.yellow
     } else if (status == "Transaction Complete") {
         return Color.green
     }
     return Color.red
 }
+
+func getLockerAddress(locker: String) -> String {
+    if (locker == "Georgia Tech") {
+        return "North Ave NW"
+    } else if (locker == "Downtown ATL") {
+        return "Peachtree St NE"
+    } else if (locker == "Midtown ATL") {
+        return "2300 Peachtree Road"
+    }
+    return "None"
+}
+
+func getLockerCity(locker: String) -> String {
+    return "Atlanta"
+}
+
+func getLockerState(locker: String) -> String {
+    return "GA"
+}
+
+func getLockerZip(locker: String) -> String {
+    if (locker == "Georgia Tech") {
+        return "30332"
+    } else if (locker == "Downtown ATL") {
+        return "30303"
+    } else if (locker == "Midtown ATL") {
+        return "30309"
+    }
+    return "None"
+}
+
+//
 
 
 //db.collection("transaction").getDocuments { snapshot, error in

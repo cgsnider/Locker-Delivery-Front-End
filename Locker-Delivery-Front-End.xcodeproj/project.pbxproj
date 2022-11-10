@@ -29,6 +29,7 @@
 		DE02EEF828F865D500D6A1F9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF728F865D500D6A1F9 /* Transaction.swift */; };
 		DE02EEFA28F8719800D6A1F9 /* PickUpLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */; };
 		DE02EEFC2916D23400D6A1F9 /* CreateTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEFB2916D23400D6A1F9 /* CreateTransactionView.swift */; };
+		DE02EEFE291C117800D6A1F9 /* ConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02EEFD291C117500D6A1F9 /* ConfirmView.swift */; };
 		DE59E5CC28F7276B0042D9F6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59E5CB28F7276B0042D9F6 /* SignUpView.swift */; };
 		DE5E10FC28F0803C00A6BF52 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE5E10FA28F0803B00A6BF52 /* Inter-Regular.otf */; };
 		DE5E10FD28F0803C00A6BF52 /* Inter-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE5E10FB28F0803C00A6BF52 /* Inter-SemiBold.otf */; };
@@ -73,6 +74,7 @@
 		DE02EEF728F865D500D6A1F9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpLocationView.swift; sourceTree = "<group>"; };
 		DE02EEFB2916D23400D6A1F9 /* CreateTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionView.swift; sourceTree = "<group>"; };
+		DE02EEFD291C117500D6A1F9 /* ConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmView.swift; sourceTree = "<group>"; };
 		DE59E5CB28F7276B0042D9F6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		DE5E10FA28F0803B00A6BF52 /* Inter-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.otf"; sourceTree = "<group>"; };
 		DE5E10FB28F0803C00A6BF52 /* Inter-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.otf"; sourceTree = "<group>"; };
@@ -160,11 +162,11 @@
 				563D397F2918AE48007607A0 /* model */,
 				DE5E10FE28F080AE00A6BF52 /* Info.plist */,
 				DE02EEF528F7542A00D6A1F9 /* DropOffsHomeView.swift */,
+				DE02EEF128F7452800D6A1F9 /* PickUpHomeView.swift */,
 				DE8D2D0228EF6F3F0027839E /* Locker_Delivery_Front_EndApp.swift */,
 				DE8D2D0428EF6F3F0027839E /* LoginView.swift */,
 				DE59E5CB28F7276B0042D9F6 /* SignUpView.swift */,
 				DE02EEF328F7501500D6A1F9 /* MainView.swift */,
-				DE02EEF128F7452800D6A1F9 /* PickUpHomeView.swift */,
 				DE02EEFB2916D23400D6A1F9 /* CreateTransactionView.swift */,
 				DE5E10F928F0801200A6BF52 /* Fonts */,
 				DE8D2D0628EF6F460027839E /* Assets.xcassets */,
@@ -173,6 +175,7 @@
 				563D39812918AE68007607A0 /* FetchExampleUI.swift */,
 				DE02EEF728F865D500D6A1F9 /* Transaction.swift */,
 				DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */,
+				DE02EEFD291C117500D6A1F9 /* ConfirmView.swift */,
 				566D7B4128F90C4B0015A3A4 /* ContentView.swift */,
 				5616CDDA28FE05EC000D196C /* Constants.swift */,
 				5616CDDC28FE0C56000D196C /* Utility.swift */,
@@ -359,6 +362,7 @@
 				DE02EEF428F7501500D6A1F9 /* MainView.swift in Sources */,
 				DE02EEF228F7452800D6A1F9 /* PickUpHomeView.swift in Sources */,
 				DE59E5CC28F7276B0042D9F6 /* SignUpView.swift in Sources */,
+				DE02EEFE291C117800D6A1F9 /* ConfirmView.swift in Sources */,
 				DE02EEFC2916D23400D6A1F9 /* CreateTransactionView.swift in Sources */,
 				DE8D2D0328EF6F3F0027839E /* Locker_Delivery_Front_EndApp.swift in Sources */,
 				DE5E110028F081A900A6BF52 /* FontStyles.swift in Sources */,

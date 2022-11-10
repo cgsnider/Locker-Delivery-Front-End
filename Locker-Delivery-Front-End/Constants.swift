@@ -17,6 +17,7 @@ struct Constants {
         static let pickup = 3
         static let print = 4
         static let createTransaction = 5
+        static let confirm = 6
         
     }
     

@@ -49,15 +49,19 @@ struct PickUpListTransactions: View {
     ExDivider()
         VStack(spacing: 15) {
             Button (action: {
-                next = Constants.Views.pickup
-                currTransaction = transaction
+                if (transaction.status == "Awaiting Confirmation") {
+                    next = Constants.Views.confirm
+                } else {
+                    next = Constants.Views.pickup
+                    currTransaction = transaction
+                }
             }) {
                 VStack {
                     HStack(spacing: 20) {
                         Text(transaction.item).font(Font.MenuBold)
                             .frame(width: 150, alignment: .leading)
                         Text(transaction.status).font(Font.MenuBold)
-                            .frame(width: 170, alignment: .trailing)
+                            .frame(width: 150, alignment: .trailing)
                             .foregroundColor(getStatusColor(status: transaction.status))
                     }
                     HStack(spacing: 20) {
@@ -66,7 +70,7 @@ struct PickUpListTransactions: View {
                             .foregroundColor(Color.gray)
                         
                         Text(transaction.date).font(Font.MenuBold)
-                            .frame(width: 170, alignment: .trailing)
+                            .frame(width: 150, alignment: .trailing)
                             .foregroundColor(Color.gray)
                     }
                 }

@@ -25,15 +25,21 @@ struct PickUpLocationView: View {
                     .foregroundColor(getStatusColor(status: transaction.status))
             }
             VStack {
+                Text("Locker:").font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center)
+                Text(transaction.locker).font(Font.SubTitle)
+                    .frame(width: 300, alignment: .center).foregroundColor(Color.gray)
+            }
+            VStack {
                 Text("Pick Up Location:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(transaction.address).font(Font.SubTitle)
+                Text(getLockerAddress(locker: transaction.locker)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
-                Text(transaction.city + ", " + transaction.state).font(Font.SubTitle)
+                Text(getLockerCity(locker: transaction.locker) + ", " + getLockerState(locker: transaction.locker)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
-                Text(String(transaction.zipcode)).font(Font.SubTitle)
+                Text(getLockerZip(locker: transaction.locker)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
             }
@@ -53,12 +59,6 @@ struct PickUpLocationView: View {
                 Text(transaction.sender_email).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
-            }
-            VStack {
-                Text("Locker Code:").font(Font.CreateTitle)
-                    .frame(width: 300, alignment: .center)
-                Text(transaction.locker).font(Font.CreateTitle)
-                    .frame(width: 300, alignment: .center)
             }
             Spacer()
             Button (action: {

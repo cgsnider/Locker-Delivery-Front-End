@@ -32,7 +32,7 @@ struct DropOffsHomeView: View {
             ScrollView {
                 VStack {
                     ForEach (model.list) { tran in
-                        PickUpListTransactions(next: $next, currTransaction: $currTransaction, transaction: tran)
+                        DropOffsListTransactions(next: $next, currTransaction: $currTransaction, transaction: tran)
                     }
                     ExDivider()
                     Spacer()

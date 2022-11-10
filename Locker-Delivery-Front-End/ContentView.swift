@@ -29,6 +29,8 @@ struct ContentView: View {
             PrintView(data:uid)
         } else if curr == Constants.Views.createTransaction {
             CreateTransactionView(next: $curr, uid: $uid)
+        } else if curr == Constants.Views.confirm {
+            ConfirmView(next: $curr, transaction: $currTransaction)
         }
             
         

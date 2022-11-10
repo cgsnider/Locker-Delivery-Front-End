@@ -14,6 +14,10 @@ struct CreateTransactionView: View {
     
     @State private var item: String = ""
     @State private var receiver_email: String = ""
+    @State private var locker: String = "Options"
+    @State private var selection = 0
+    @State var errorMessage = ""
+    @State var createFailed = false
     
     var body: some View {
         VStack(spacing: 50) {
@@ -46,22 +50,56 @@ struct CreateTransactionView: View {
                 }
             }
             
+            VStack {
+                Text("Select a Locker").font(Font.SubTitle2)
+                    .frame(width: 300, alignment: .leading)
+                Menu {
+                    Button (action: {
+                        locker = "Georgia Tech"
+                    }) {
+                        Text("Georgia Tech").font(Font.SubTitle2)
+                            .frame(width: 300, alignment: .leading)
+                    }
+                    Button (action: {
+                        locker = "Downtown ATL"
+                    }) {
+                        Text("Downtown ATL").font(Font.SubTitle2)
+                            .frame(width: 300, alignment: .leading)
+                    }
+                    Button (action: {
+                        locker = "Buckhead"
+                    }) {
+                        Text("Buckhead").font(Font.SubTitle2)
+                            .frame(width: 300, alignment: .leading)
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                    Text(locker).font(Font.SubTitle)
+                        .frame(width: 300, alignment: .leading).foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
+                }
+            }
+            
             VStack(spacing:40) {
                 // Update this when Adding transaction to database
                 Button (action: {
                     Task {
-                        let success = await postTransaction(sender_id: uid, receiver_email: receiver_email, item: item)
-                        if success == nil {
+                        let fail = await postTransaction(sender_id: uid, receiver_email: receiver_email, item: item, locker: locker)
+                        if fail == nil {
                             next = Constants.Views.main
                         } else {
-                            if let success = success {
-                                print(success)
+                            if let fail = fail {
+                                createFailed = true;
+                                errorMessage = fail;
                             }
                         }
                 
                     }
                 }) {
-                    Image("CreateTransaction")
+                    Image("CreateTransaction").alert("Login Failed", isPresented: $createFailed, actions: {
+                        Button("OK", role: .cancel) { }
+                }, message: {
+                    Text(errorMessage)
+                })
                 }
                 
                 Button (action: {
