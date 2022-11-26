@@ -37,6 +37,11 @@ struct PickUpHomeView: View {
                 }
             }
             Spacer()
+            Button (action: {
+                next = Constants.Views.main
+            }) {
+                Image("Back")
+            }
         }
     }
 }
@@ -50,6 +55,7 @@ struct PickUpListTransactions: View {
         VStack(spacing: 15) {
             Button (action: {
                 if (transaction.status == "Awaiting Confirmation") {
+                    currTransaction = transaction
                     next = Constants.Views.confirm
                 } else {
                     next = Constants.Views.pickup

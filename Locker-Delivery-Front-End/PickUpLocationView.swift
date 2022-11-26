@@ -11,6 +11,8 @@ import SwiftUI
 struct PickUpLocationView: View {
     @Binding var next: Int
     @Binding var transaction: Transaction
+    @State var errorMessage = ""
+    @State var confirmFailed = false
     var body: some View {
         VStack (spacing: 25) {
             Spacer()
@@ -61,10 +63,34 @@ struct PickUpLocationView: View {
                     .foregroundColor(Color.gray)
             }
             Spacer()
-            Button (action: {
-                next = Constants.Views.main
-            }) {
-                Image("Back")
+            Group {
+                if (transaction.status == "Awaiting Pickup") {
+                    Button (action: {
+                        Task {
+                            let fail = await completeTransaction(transaction: transaction)
+                            if fail == nil {
+                                next = Constants.Views.pickup
+                            } else {
+                                if let fail = fail {
+                                    confirmFailed = true;
+                                    errorMessage = fail;
+                                }
+                            }
+                        }
+                        next = Constants.Views.pickuphome
+                    }) {
+                        Image("Confirm Pickup").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
+                            Button("OK", role: .cancel) { }
+                        }, message: {
+                            Text(errorMessage)
+                        })
+                    }
+                }
+                Button (action: {
+                    next = Constants.Views.pickuphome
+                }) {
+                    Image("Back")
+                }
             }
         }
     }

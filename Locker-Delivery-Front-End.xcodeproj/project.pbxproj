@@ -41,6 +41,7 @@
 		DE8D2D1428EF6F460027839E /* Locker_Delivery_Front_EndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8D2D1328EF6F460027839E /* Locker_Delivery_Front_EndTests.swift */; };
 		DE8D2D1E28EF6F460027839E /* Locker_Delivery_Front_EndUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8D2D1D28EF6F460027839E /* Locker_Delivery_Front_EndUITests.swift */; };
 		DE8D2D2028EF6F460027839E /* Locker_Delivery_Front_EndUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8D2D1F28EF6F460027839E /* Locker_Delivery_Front_EndUITestsLaunchTests.swift */; };
+		DECD3927292FEB2000BA141E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECD3926292FEB2000BA141E /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		DE8D2D1928EF6F460027839E /* Locker-Delivery-Front-EndUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Locker-Delivery-Front-EndUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE8D2D1D28EF6F460027839E /* Locker_Delivery_Front_EndUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locker_Delivery_Front_EndUITests.swift; sourceTree = "<group>"; };
 		DE8D2D1F28EF6F460027839E /* Locker_Delivery_Front_EndUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locker_Delivery_Front_EndUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DECD3926292FEB2000BA141E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				DE5E10FF28F081A900A6BF52 /* FontStyles.swift */,
 				563D39812918AE68007607A0 /* FetchExampleUI.swift */,
 				DE02EEF728F865D500D6A1F9 /* Transaction.swift */,
+				DECD3926292FEB2000BA141E /* User.swift */,
 				DE02EEF928F8719800D6A1F9 /* PickUpLocationView.swift */,
 				DE02EEFD291C117500D6A1F9 /* ConfirmView.swift */,
 				566D7B4128F90C4B0015A3A4 /* ContentView.swift */,
@@ -364,6 +367,7 @@
 				DE59E5CC28F7276B0042D9F6 /* SignUpView.swift in Sources */,
 				DE02EEFE291C117800D6A1F9 /* ConfirmView.swift in Sources */,
 				DE02EEFC2916D23400D6A1F9 /* CreateTransactionView.swift in Sources */,
+				DECD3927292FEB2000BA141E /* User.swift in Sources */,
 				DE8D2D0328EF6F3F0027839E /* Locker_Delivery_Front_EndApp.swift in Sources */,
 				DE5E110028F081A900A6BF52 /* FontStyles.swift in Sources */,
 				566D7B4228F90C4B0015A3A4 /* ContentView.swift in Sources */,

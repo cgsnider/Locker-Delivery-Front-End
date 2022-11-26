@@ -15,9 +15,12 @@ struct Constants {
         static let signup = 1
         static let main = 2
         static let pickup = 3
-        static let print = 4
-        static let createTransaction = 5
-        static let confirm = 6
+        static let pickuphome = 4
+        static let dropoffhome = 5
+        static let settings = 6
+        static let print = 7
+        static let createTransaction = 8
+        static let confirm = 9
         
     }
     

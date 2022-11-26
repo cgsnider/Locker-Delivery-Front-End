@@ -46,6 +46,11 @@ struct DropOffsHomeView: View {
                 }) {
                     Image("NewTransaction")
                 }
+                Button (action: {
+                    next = Constants.Views.main
+                }) {
+                    Image("Back")
+                }
             }
             Spacer()
         }

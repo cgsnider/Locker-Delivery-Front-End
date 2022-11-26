@@ -10,6 +10,8 @@ import SwiftUI
 struct ConfirmView: View {
     @Binding var next: Int
     @Binding var transaction: Transaction
+    @State var errorMessage = ""
+    @State var confirmFailed = false
     var body: some View {
         VStack (spacing: 80) {
             Spacer()
@@ -23,14 +25,44 @@ struct ConfirmView: View {
             }
             HStack {
                 Button (action: {
-                    next = Constants.Views.main
+                    Task {
+                        let fail = await confirmTransaction(transaction: transaction)
+                        if fail == nil {
+                            next = Constants.Views.pickup
+                        } else {
+                            if let fail = fail {
+                                confirmFailed = true;
+                                errorMessage = fail;
+                            }
+                        }
+                    }
+                    next = Constants.Views.pickup
                 }) {
-                    Image("ConfirmButton")
+                    Image("ConfirmButton").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
+                        Button("OK", role: .cancel) { }
+                    }, message: {
+                        Text(errorMessage)
+                    })
                 }
                 Button (action: {
-                    next = Constants.Views.main
+                    Task {
+                        let fail = await declineTransaction(transaction: transaction)
+                        if fail == nil {
+                            next = Constants.Views.pickup
+                        } else {
+                            if let fail = fail {
+                                confirmFailed = true;
+                                errorMessage = fail;
+                            }
+                        }
+                    }
+                    next = Constants.Views.pickup
                 }) {
-                    Image("DeclineButton")
+                    Image("DeclineButton").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
+                        Button("OK", role: .cancel) { }
+                    }, message: {
+                        Text(errorMessage)
+                    })
                 }
             }
             Spacer()

@@ -92,7 +92,6 @@ struct CreateTransactionView: View {
                                 errorMessage = fail;
                             }
                         }
-                
                     }
                 }) {
                     Image("CreateTransaction").alert("Login Failed", isPresented: $createFailed, actions: {
@@ -103,7 +102,7 @@ struct CreateTransactionView: View {
                 }
                 
                 Button (action: {
-                    next = Constants.Views.main
+                    next = Constants.Views.dropoffhome
                 }) {
                     Image("Back")
                 }

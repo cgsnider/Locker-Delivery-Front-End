@@ -122,6 +122,41 @@ func postTransaction(sender_id: String, receiver_email: String, item: String, lo
     }
 }
 
+func confirmTransaction(transaction: Transaction) async -> String? {
+    let db = Firestore.firestore()
+    do {
+        try await db.collection("transaction").document(transaction.id).setData([
+            "status": "Awaiting Dropoff",
+        ], merge: true)
+        
+        return nil
+    } catch {
+        return "An error has occured"
+    }
+}
+
+func declineTransaction(transaction: Transaction) async -> String? {
+    let db = Firestore.firestore()
+    do {
+        try await db.collection("transaction").document(transaction.id).delete()
+        return nil
+    } catch {
+        return "An error has occured"
+    }
+}
+
+func completeTransaction(transaction: Transaction) async -> String? {
+    let db = Firestore.firestore()
+    do {
+        try await db.collection("transaction").document(transaction.id).setData([
+            "status": "Transaction Complete",
+        ], merge: true)
+        return nil
+    } catch {
+        return "An error has occured"
+    }
+}
+
 
 // Going to add another status for confirming a transaction
 func getStatusColor(status: String) -> Color {
