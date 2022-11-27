@@ -70,6 +70,12 @@ struct PickUpLocationView: View {
                             let fail = await completeTransaction(transaction: transaction)
                             if fail == nil {
                                 next = Constants.Views.pickup
+                                
+                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Confirmed!",
+                                                  body: "Hello! I just picked up the \(transaction.item) from the locker \(transaction.locker)")
+                                
+                                email.sendEmail()
+                                
                             } else {
                                 if let fail = fail {
                                     confirmFailed = true;

@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
    
-    @State var uid = "NejvBVP9T0RNMI0ME6uQjAd5fQ12"
+    @Binding var uid: String
     @State var curr = Constants.Views.main
     @State var currTransaction = blankTransaction()
     
@@ -45,6 +45,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(uid: .constant("NejvBVP9T0RNMI0ME6uQjAd5fQ12"))
     }
 }
