@@ -87,7 +87,7 @@ struct CreateTransactionView: View {
                         if fail == nil {
                             next = Constants.Views.main
                             
-                            let email = Email(toAddress: "cgsnider@outlook.com", subject: "New DeLocker Transaction: \(item)",
+                            let email = Email(toAddress: receiver_email, subject: "New DeLocker Transaction: \(item)",
                                               body: "Hi! I have started an exchange for \(item) at the \(locker) locker. Please Pick up item within the next 3 days!")
                             
                             email.sendEmail()
