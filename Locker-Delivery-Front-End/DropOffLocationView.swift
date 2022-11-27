@@ -1,14 +1,14 @@
 //
-//  PickUpLocationView.swift
+//  DropOffLocationView.swift
 //  Locker-Delivery-Front-End
 //
-//  Created by TJ Crawford on 10/13/22.
+//  Created by TJ Crawford on 11/27/22.
 //
 
 import SwiftUI
 
 
-struct PickUpLocationView: View {
+struct DropOffLocationView: View {
     @Binding var next: Int
     @Binding var transaction: Transaction
     @State var errorMessage = ""
@@ -46,16 +46,16 @@ struct PickUpLocationView: View {
                     .foregroundColor(Color.gray)
             }
             VStack {
-                Text("Sender:").font(Font.SubTitle)
+                Text("Receiver:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(transaction.sender).font(Font.SubTitle)
+                Text(transaction.receiver).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
             }
             VStack {
                 Text("Contact Info:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(transaction.sender_number).font(Font.SubTitle)
+                Text(transaction.receiver_number).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
                 Text(transaction.sender_email).font(Font.SubTitle)
@@ -64,12 +64,12 @@ struct PickUpLocationView: View {
             }
             Spacer()
             Group {
-                if (transaction.status == "Awaiting Pickup") {
+                if (transaction.status == "Awaiting Dropoff") {
                     Button (action: {
                         Task {
-                            let fail = await completeTransaction(transaction: transaction)
+                            let fail = await completeDropOffTransaction(transaction: transaction)
                             if fail == nil {
-                                next = Constants.Views.pickuphome
+                                next = Constants.Views.dropoffhome
                             } else {
                                 if let fail = fail {
                                     confirmFailed = true;
@@ -77,9 +77,9 @@ struct PickUpLocationView: View {
                                 }
                             }
                         }
-                        next = Constants.Views.pickuphome
+                        next = Constants.Views.dropoffhome
                     }) {
-                        Image("Confirm Pickup").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
+                        Image("Confirm Dropoff").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
                             Button("OK", role: .cancel) { }
                         }, message: {
                             Text(errorMessage)
@@ -87,7 +87,7 @@ struct PickUpLocationView: View {
                     }
                 }
                 Button (action: {
-                    next = Constants.Views.pickuphome
+                    next = Constants.Views.dropoffhome
                 }) {
                     Image("Back")
                 }
@@ -95,32 +95,3 @@ struct PickUpLocationView: View {
         }
     }
 }
-
-//struct ListTransactions: View {
-//    var transaction: Transaction
-//    var body: some View {
-//        ExDivider()
-//        NavigationLink(destination: LoginView()) {
-//            VStack(spacing: 15) {
-//                VStack {
-//                    HStack(spacing: 20) {
-//                        Text(transaction.item).font(Font.MenuBold)
-//                            .frame(width: 150, alignment: .leading)
-//                        Text(transaction.status).font(Font.MenuBold)
-//                            .frame(width: 150, alignment: .trailing)
-//                            .foregroundColor(Color.yellow)
-//                    }
-//                    HStack(spacing: 20) {
-//                        Text(transaction.name).font(Font.MenuBold)
-//                            .frame(width: 150, alignment: .leading)
-//                            .foregroundColor(Color.gray)
-//
-//                        Text(transaction.date).font(Font.MenuBold)
-//                            .frame(width: 150, alignment: .trailing)
-//                            .foregroundColor(Color.gray)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}

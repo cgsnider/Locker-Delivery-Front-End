@@ -17,7 +17,7 @@ struct MainView: View {
     
     var body: some View {
         VStack(spacing: 80) {
-            Text("Welcome back, " + name).font(Font.CreateTitle)
+            Text("Welcome Home, " + name).font(Font.CreateTitle)
                 .frame(width: 300, alignment: .center)
             Button(action: {
                 next = Constants.Views.pickuphome

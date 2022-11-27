@@ -35,6 +35,8 @@ struct ContentView: View {
             CreateTransactionView(next: $curr, uid: $uid)
         } else if curr == Constants.Views.confirm {
             ConfirmView(next: $curr, transaction: $currTransaction)
+        } else if curr == Constants.Views.dropoff {
+            DropOffLocationView(next: $curr, transaction: $currTransaction)
         }
             
         

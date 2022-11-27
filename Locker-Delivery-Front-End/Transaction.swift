@@ -145,6 +145,18 @@ func declineTransaction(transaction: Transaction) async -> String? {
     }
 }
 
+func completeDropOffTransaction(transaction: Transaction) async -> String? {
+    let db = Firestore.firestore()
+    do {
+        try await db.collection("transaction").document(transaction.id).setData([
+            "status": "Awaiting Pickup",
+        ], merge: true)
+        return nil
+    } catch {
+        return "An error has occured"
+    }
+}
+
 func completeTransaction(transaction: Transaction) async -> String? {
     let db = Firestore.firestore()
     do {

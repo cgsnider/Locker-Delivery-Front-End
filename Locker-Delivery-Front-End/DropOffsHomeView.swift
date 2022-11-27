@@ -65,7 +65,7 @@ struct DropOffsListTransactions: View {
     ExDivider()
         VStack(spacing: 15) {
             Button (action: {
-                next = Constants.Views.pickup
+                next = Constants.Views.dropoff
                 currTransaction = transaction
             }) {
                 VStack {
