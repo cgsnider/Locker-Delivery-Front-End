@@ -86,6 +86,12 @@ struct CreateTransactionView: View {
                         let fail = await postTransaction(sender_id: uid, receiver_email: receiver_email, item: item, locker: locker)
                         if fail == nil {
                             next = Constants.Views.main
+                            
+                            let email = Email(toAddress: receiver_email, subject: "New DeLocker Transaction: \(item)",
+                                              body: "Hi! I have started an exchange for \(item) at the \(locker) locker. Please Pick up item within the next 3 days!")
+                            
+                            email.sendEmail()
+                            
                         } else {
                             if let fail = fail {
                                 createFailed = true;
@@ -95,7 +101,7 @@ struct CreateTransactionView: View {
                     }
                 }) {
                     Image("CreateTransaction").alert("Login Failed", isPresented: $createFailed, actions: {
-                        Button("OK", role: .cancel) { }
+                        Button("OK", role: .cancel) {}
                 }, message: {
                     Text(errorMessage)
                 })

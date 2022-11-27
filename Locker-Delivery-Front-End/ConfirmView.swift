@@ -28,6 +28,12 @@ struct ConfirmView: View {
                     Task {
                         let fail = await confirmTransaction(transaction: transaction)
                         if fail == nil {
+                            
+                            let email = Email(toAddress: transaction.sender_email, subject: "Pickup Approved",
+                                              body: "Hello! I'll pick up \(transaction.item) from the locker.")
+                            
+                            email.sendEmail()
+                            
                             next = Constants.Views.pickup
                         } else {
                             if let fail = fail {
@@ -48,6 +54,12 @@ struct ConfirmView: View {
                     Task {
                         let fail = await declineTransaction(transaction: transaction)
                         if fail == nil {
+                            
+                            let email = Email(toAddress: transaction.sender_email, subject: "Pickup Declined: \(transaction.item)",
+                                              body: "Hi, I would not like to pick up that item.")
+                            
+                            email.sendEmail()
+                            
                             next = Constants.Views.pickup
                         } else {
                             if let fail = fail {
