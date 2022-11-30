@@ -15,6 +15,7 @@ struct SignUpView: View {
     
     @State private var username: String = ""
     @State private var password: String = ""
+    @State private var name: String = ""
     @State var signUpFailed = false
     @State var errorMessage = ""
     
@@ -26,22 +27,23 @@ struct SignUpView: View {
             Text("Create a new account").font(Font.SubTitle)
                 .frame(width: 300, alignment: .leading)
                 .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
-            ZStack {
-                Image("Textbox")
-                TextField("Email", text: $username).font(Font.TextField).frame(width: 300, alignment: .center)
-                    .foregroundColor(.black)
-            }
-            
-            ZStack {
-                Image("Textbox")
-                TextField("Password", text: $password).font(Font.TextField).frame(width: 300, alignment: .center)
-                    .foregroundColor(.black)
-            }
-            Button(action: {
-                print("button pressed")
-            }) {
-                Text("Forgot Password?").font(Font.ForgetPasswordText)
-                    .frame(width: 300, alignment: .center)
+            Group {
+                ZStack {
+                    Image("Textbox")
+                    TextField("Email", text: $username).font(Font.TextField).frame(width: 300, alignment: .center)
+                        .foregroundColor(.black)
+                }
+                
+                ZStack {
+                    Image("Textbox")
+                    TextField("Password", text: $password).font(Font.TextField).frame(width: 300, alignment: .center)
+                        .foregroundColor(.black)
+                }
+                ZStack {
+                    Image("Textbox")
+                    TextField("Full Name", text: $name).font(Font.TextField).frame(width: 300, alignment: .center)
+                        .foregroundColor(.black)
+                }
             }
             
             Button (action: {
@@ -77,6 +79,10 @@ struct SignUpView: View {
             return "Please Enter a Password";
         }
         
+        if name == "" {
+            return "Please Enter your Name";
+        }
+        
         if !NSPredicate(format:"SELF MATCHES %@", email_pattern).evaluate(with: username) {
             return "Please enter valid email"
         }
@@ -98,6 +104,7 @@ struct SignUpView: View {
         
         let email = username.trimmingCharacters(in: .whitespacesAndNewlines)
         let psswd = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        let fullname = name.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if error != nil {
             //Show error message because improper input to fields
@@ -119,7 +126,8 @@ struct SignUpView: View {
                     let db = Firestore.firestore()
                     db.collection("users").document(result!.user.uid).setData([
                         "email": email,
-                        "uid": result!.user.uid
+                        "uid": result!.user.uid,
+                        "name": fullname
                     ]) { (error) in
                         
                         if error != nil {

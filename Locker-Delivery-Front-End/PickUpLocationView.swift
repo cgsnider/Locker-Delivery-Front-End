@@ -29,19 +29,19 @@ struct PickUpLocationView: View {
             VStack {
                 Text("Locker:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(transaction.locker).font(Font.SubTitle)
+                Text(transaction.locker_location).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center).foregroundColor(Color.gray)
             }
             VStack {
                 Text("Pick Up Location:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(getLockerAddress(locker: transaction.locker)).font(Font.SubTitle)
+                Text(getLockerAddress(locker: transaction.locker_location)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
-                Text(getLockerCity(locker: transaction.locker) + ", " + getLockerState(locker: transaction.locker)).font(Font.SubTitle)
+                Text(getLockerCity(locker: transaction.locker_location) + ", " + getLockerState(locker: transaction.locker_location)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
-                Text(getLockerZip(locker: transaction.locker)).font(Font.SubTitle)
+                Text(getLockerZip(locker: transaction.locker_location)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
             }
@@ -67,14 +67,9 @@ struct PickUpLocationView: View {
                 if (transaction.status == "Awaiting Pickup") {
                     Button (action: {
                         Task {
-                            let fail = await completeTransaction(transaction: transaction)
+                            let fail = await completePickUpTransaction(transaction: transaction)
                             if fail == nil {
                                 next = Constants.Views.pickuphome
-                                
-                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Confirmed!",
-                                                  body: "Hello! I just picked up the \(transaction.item) from the locker \(transaction.locker)")
-                                
-                                email.sendEmail()
                             } else {
                                 if let fail = fail {
                                     confirmFailed = true;
@@ -82,13 +77,19 @@ struct PickUpLocationView: View {
                                 }
                             }
                         }
-                        next = Constants.Views.pickuphome
+                        next = Constants.Views.pickup
                     }) {
-                        Image("Confirm Pickup").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
+                        Image("Unlock Locker").alert("Unlock Failed", isPresented: $confirmFailed, actions: {
                             Button("OK", role: .cancel) { }
                         }, message: {
                             Text(errorMessage)
                         })
+                    }
+                } else if (transaction.status == "Awaiting Transaction Completion") {
+                    Button (action: {
+                        next = Constants.Views.confirm
+                    }) {
+                        Image("Confirm Pickup")
                     }
                 }
                 Button (action: {

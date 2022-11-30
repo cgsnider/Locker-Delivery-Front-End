@@ -12,11 +12,17 @@ struct ConfirmView: View {
     @Binding var transaction: Transaction
     @State var errorMessage = ""
     @State var confirmFailed = false
+    @State var text = ""
     var body: some View {
         VStack (spacing: 80) {
             Spacer()
-            Text(transaction.sender + " would like to start a transaction with you").font(Font.SubTitle2)
-                .frame(width: 300, alignment: .center)
+            if (transaction.status == "Awaiting Confirmation") {
+                Text(transaction.sender + " would like to start a transaction with you").font(Font.SubTitle2)
+                    .frame(width: 300, alignment: .center)
+            } else {
+                Text("Would you like to complete the transaction with " + transaction.sender).font(Font.SubTitle2)
+                    .frame(width: 300, alignment: .center)
+            }
             VStack (spacing: 25) {
                 Text("Item Name:").font(Font.SubTitle2)
                     .frame(width: 300, alignment: .center)
@@ -25,24 +31,45 @@ struct ConfirmView: View {
             }
             HStack {
                 Button (action: {
-                    Task {
-                        let fail = await confirmTransaction(transaction: transaction)
-                        if fail == nil {
-                            
-                            let email = Email(toAddress: transaction.sender_email, subject: "Pickup Approved",
-                                              body: "Hello! I'll pick up \(transaction.item) from the locker.")
-                            
-                            email.sendEmail()
-                            
-                            next = Constants.Views.pickup
-                        } else {
-                            if let fail = fail {
-                                confirmFailed = true;
-                                errorMessage = fail;
+                    if (transaction.status == "Awaiting Confirmation") {
+                        Task {
+                            let fail = await confirmTransaction(transaction: transaction)
+                            if fail == nil {
+                                
+                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Approved",
+                                                  body: "Hello! I'll pick up \(transaction.item) from the locker.")
+                                
+                                email.sendEmail()
+                                
+                                next = Constants.Views.pickuphome
+                            } else {
+                                if let fail = fail {
+                                    confirmFailed = true;
+                                    errorMessage = fail;
+                                }
                             }
                         }
+                        next = Constants.Views.pickuphome
+                    } else {
+                        Task {
+                            let fail = await completeTransaction(transaction: transaction)
+                            if fail == nil {
+                                
+                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Approved",
+                                                  body: "Hello! I just picked up the \(transaction.item) from the locker at \(transaction.locker_location)")
+                                
+                                email.sendEmail()
+                                
+                                next = Constants.Views.pickuphome
+                            } else {
+                                if let fail = fail {
+                                    confirmFailed = true;
+                                    errorMessage = fail;
+                                }
+                            }
+                        }
+                        next = Constants.Views.pickuphome
                     }
-                    next = Constants.Views.pickup
                 }) {
                     Image("ConfirmButton").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
                         Button("OK", role: .cancel) { }
@@ -51,24 +78,32 @@ struct ConfirmView: View {
                     })
                 }
                 Button (action: {
-                    Task {
-                        let fail = await declineTransaction(transaction: transaction)
-                        if fail == nil {
-                            
-                            let email = Email(toAddress: transaction.sender_email, subject: "Pickup Declined: \(transaction.item)",
-                                              body: "Hi, I would not like to pick up that item.")
-                            
-                            email.sendEmail()
-                            
-                            next = Constants.Views.pickup
-                        } else {
-                            if let fail = fail {
-                                confirmFailed = true;
-                                errorMessage = fail;
+                    if (transaction.status == "Awaiting Confirmation") {
+                        Task {
+                            let fail = await declineTransaction(transaction: transaction)
+                            if fail == nil {
+                                
+                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Declined: \(transaction.item)",
+                                                  body: "Hi, I would not like to pick up that item.")
+                                
+                                email.sendEmail()
+                                
+                                next = Constants.Views.pickuphome
+                            } else {
+                                if let fail = fail {
+                                    confirmFailed = true;
+                                    errorMessage = fail;
+                                }
                             }
                         }
+                    } else {
+                        let email = Email(toAddress: "cs4261tmcp@gmail.com", subject: "Pickup Support: \(transaction.item)",
+                                          body: "I need support for my pickup")
+                        
+                        email.sendEmail()
+                        
+                        next = Constants.Views.pickuphome
                     }
-                    next = Constants.Views.pickup
                 }) {
                     Image("DeclineButton").alert("Confirmation Failed", isPresented: $confirmFailed, actions: {
                         Button("OK", role: .cancel) { }
@@ -78,7 +113,11 @@ struct ConfirmView: View {
                 }
             }
             Spacer()
-            
+            Button (action: {
+                next = Constants.Views.pickuphome
+            }) {
+                Image("Back")
+            }
         }
     }
 }

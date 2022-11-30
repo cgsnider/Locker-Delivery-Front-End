@@ -22,6 +22,7 @@ struct Constants {
         static let createTransaction = 8
         static let confirm = 9
         static let dropoff = 10
+        static let payment = 11
         
     }
     

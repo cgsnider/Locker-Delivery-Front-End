@@ -32,11 +32,15 @@ struct ContentView: View {
         } else if curr == Constants.Views.print {
             PrintView(data:uid)
         } else if curr == Constants.Views.createTransaction {
-            CreateTransactionView(next: $curr, uid: $uid)
+            CreateTransactionView(next: $curr, uid: $uid, currTransaction: $currTransaction)
         } else if curr == Constants.Views.confirm {
             ConfirmView(next: $curr, transaction: $currTransaction)
         } else if curr == Constants.Views.dropoff {
             DropOffLocationView(next: $curr, transaction: $currTransaction)
+        } else if curr == Constants.Views.settings {
+            SettingsView(next: $curr, uid: $uid)
+        } else if curr == Constants.Views.payment {
+            PaymentView(next: $curr, uid: $uid, currTransaction: $currTransaction)
         }
             
         

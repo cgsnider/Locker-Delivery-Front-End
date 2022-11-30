@@ -29,19 +29,19 @@ struct DropOffLocationView: View {
             VStack {
                 Text("Locker:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(transaction.locker).font(Font.SubTitle)
+                Text(transaction.locker_location).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center).foregroundColor(Color.gray)
             }
             VStack {
                 Text("Pick Up Location:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(getLockerAddress(locker: transaction.locker)).font(Font.SubTitle)
+                Text(getLockerAddress(locker: transaction.locker_location)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
-                Text(getLockerCity(locker: transaction.locker) + ", " + getLockerState(locker: transaction.locker)).font(Font.SubTitle)
+                Text(getLockerCity(locker: transaction.locker_location) + ", " + getLockerState(locker: transaction.locker_location)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
-                Text(getLockerZip(locker: transaction.locker)).font(Font.SubTitle)
+                Text(getLockerZip(locker: transaction.locker_location)).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
             }

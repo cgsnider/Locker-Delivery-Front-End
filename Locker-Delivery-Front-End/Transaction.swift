@@ -17,18 +17,20 @@ struct Transaction: Identifiable {
     var city: String
     var state: String
     var zipcode: String
-    var locker: String
+    var locker_location: String
+    var locker_id: String
     var sender: String
     var sender_number: String
     var sender_email: String
     var receiver: String
     var receiver_number: String
     var receiver_email: String
+    var reserved: String
 }
 
 
 func blankTransaction() -> Transaction{
-    return Transaction(id: "", item: "", status: "", date: "", address: "", city: "", state: "", zipcode: "", locker: "", sender: "", sender_number: "", sender_email: "", receiver: "", receiver_number: "", receiver_email: "")
+    return Transaction(id: "", item: "", status: "", date: "", address: "", city: "", state: "", zipcode: "", locker_location: "", locker_id: "", sender: "", sender_number: "", sender_email: "", receiver: "", receiver_number: "", receiver_email: "", reserved: "")
 }
 
 
@@ -58,13 +60,15 @@ class TransactionModel: ObservableObject {
                         city: d["city"] as? String ?? "",
                         state: d["state"] as? String ?? "",
                         zipcode: d["zipcode"] as? String ?? "",
-                        locker: d["locker"] as? String ?? "",
+                        locker_location: d["locker_location"] as? String ?? "",
+                        locker_id: d["locker_id"] as? String ?? "",
                         sender: d["sender_name"] as? String ?? "",
                         sender_number: d["sender_number"] as? String ?? "",
                         sender_email: d["sender_email"] as? String ?? "",
                         receiver: d["receiver_name"] as? String ?? "",
                         receiver_number: d["receiver_number"] as? String ?? "",
-                        receiver_email: d["receiver_email"] as? String ?? "")
+                        receiver_email: d["receiver_email"] as? String ?? "",
+                        reserved: d["receiver_number"] as? String ?? "")
                 }
                 
             }
@@ -73,20 +77,20 @@ class TransactionModel: ObservableObject {
     }
 }
 
-func postTransaction(sender_id: String, receiver_email: String, item: String, locker: String) async -> String? {
+func postTransaction(sender_id: String, transaction: Transaction, reserved: String) async -> String? {
     let db = Firestore.firestore()
     
     let date = Date()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd/MM/yyyy"
     
-    if (item == "") {
+    if (transaction.item == "") {
         return "Please enter item name"
     }
-    if (receiver_email == "") {
+    if (transaction.receiver_email == "") {
         return "Please enter a receiver email"
     }
-    if (locker == "Options") {
+    if (transaction.locker_location == "Options") {
         return "Please enter a locker location"
     }
     
@@ -94,28 +98,45 @@ func postTransaction(sender_id: String, receiver_email: String, item: String, lo
         
         let sender = try await db.collection("users").document(sender_id).getDocument()
         
-        let receiver_documents = try await db.collection("users").whereField("email", isEqualTo: receiver_email.lowercased()).getDocuments().documents
+        let receiver_documents = try await db.collection("users").whereField("email", isEqualTo: transaction.receiver_email.lowercased()).getDocuments().documents
         
         if receiver_documents.count != 1 {
             return "Receiver Email does not exist"
         }
         
         let receiver = receiver_documents[0]
+        
+        let locker_id = await findAvailableLocker(locker_location: transaction.locker_location)
+        
+        if locker_id == nil {
+            return "No Available lockers at this location. Please select a different locker"
+        } else if locker_id == "-1" {
+            return "An Error Occured"
+        }
+        
 
         try await db.collection("transaction").document().setData([
-            "item" : item,
-            "locker": locker,
-            "receiver_email": receiver["email"] as? String ?? "Missing",
+            "item" : transaction.item,
+            "locker_location": transaction.locker_location,
+            "locker_id": locker_id!,
+            "receiver_email": receiver["email"] as? String ?? "Missing Email",
+            "receiver_name": receiver["name"] as? String ?? "Missing Name",
             "receiver_id": receiver.documentID,
-            "receiver_number": receiver["number"] as? String ?? "Missing",
-            "sender_email": sender["email"] as? String ?? "Missing",
-            "sender_name": sender["name"] as? String ?? "Missing",
+            "receiver_number": receiver["number"] as? String ?? "Missing Number",
+            "sender_email": sender["email"] as? String ?? "Missing Email",
+            "sender_name": sender["name"] as? String ?? "Missing Name",
             "sender_id": sender_id,
             "status": "Awaiting Confirmation",
+            "reserved": reserved,
             "date": dateFormatter.string(from: date)
         ])
         
-        return nil
+        let fail = await reserveLocker(locker_id: locker_id!, locker_location: transaction.locker_location)
+        if fail == nil {
+            return nil
+        } else {
+            return "An Error Occured"
+        }
         
     } catch {
         return "Incorrect Email"
@@ -139,7 +160,15 @@ func declineTransaction(transaction: Transaction) async -> String? {
     let db = Firestore.firestore()
     do {
         try await db.collection("transaction").document(transaction.id).delete()
-        return nil
+        
+        let fail = await unreserveLocker(locker_id: transaction.locker_id, locker_location: transaction.locker_location)
+        
+        if fail == nil {
+            return nil
+        } else {
+            return "An Error Occured"
+        }
+        
     } catch {
         return "An error has occured"
     }
@@ -151,11 +180,41 @@ func completeDropOffTransaction(transaction: Transaction) async -> String? {
         try await db.collection("transaction").document(transaction.id).setData([
             "status": "Awaiting Pickup",
         ], merge: true)
-        return nil
+        
+        let fail = await lockReservedLocker(locker_id: transaction.locker_id, locker_location: transaction.locker_location)
+        
+        if fail == nil {
+            return nil
+        } else {
+            return "An Error Occured"
+        }
+        
     } catch {
         return "An error has occured"
     }
 }
+
+func completePickUpTransaction(transaction: Transaction) async -> String? {
+    let db = Firestore.firestore()
+    do {
+        try await db.collection("transaction").document(transaction.id).setData([
+            "status": "Awaiting Transaction Completion",
+        ], merge: true)
+        
+        let fail = await unlockReservedLocker(locker_id: transaction.locker_id, locker_location: transaction.locker_location)
+        
+        if fail == nil {
+            return nil
+        } else {
+            return "An Error Occured"
+        }
+        
+    } catch {
+        return "An error has occured"
+    }
+}
+
+
 
 func completeTransaction(transaction: Transaction) async -> String? {
     let db = Firestore.firestore()
@@ -163,7 +222,15 @@ func completeTransaction(transaction: Transaction) async -> String? {
         try await db.collection("transaction").document(transaction.id).setData([
             "status": "Transaction Complete",
         ], merge: true)
-        return nil
+        
+        let fail = await unreserveLocker(locker_id: transaction.locker_id, locker_location: transaction.locker_location)
+        
+        if fail == nil {
+            return nil
+        } else {
+            return "An Error Occured"
+        }
+
     } catch {
         return "An error has occured"
     }
@@ -178,40 +245,12 @@ func getStatusColor(status: String) -> Color {
         return Color.blue
     } else if (status == "Awaiting Pickup") {
         return Color.yellow
+    } else if (status == "Awaiting Transaction Completion") {
+        return Color.orange
     } else if (status == "Transaction Complete") {
         return Color.green
     }
     return Color.red
-}
-
-func getLockerAddress(locker: String) -> String {
-    if (locker == "Georgia Tech") {
-        return "North Ave NW"
-    } else if (locker == "Downtown ATL") {
-        return "Peachtree St NE"
-    } else if (locker == "Midtown ATL") {
-        return "2300 Peachtree Road"
-    }
-    return "None"
-}
-
-func getLockerCity(locker: String) -> String {
-    return "Atlanta"
-}
-
-func getLockerState(locker: String) -> String {
-    return "GA"
-}
-
-func getLockerZip(locker: String) -> String {
-    if (locker == "Georgia Tech") {
-        return "30332"
-    } else if (locker == "Downtown ATL") {
-        return "30303"
-    } else if (locker == "Midtown ATL") {
-        return "30309"
-    }
-    return "None"
 }
 
 //

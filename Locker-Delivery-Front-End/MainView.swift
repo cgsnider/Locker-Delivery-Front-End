@@ -34,6 +34,12 @@ struct MainView: View {
             }) {
                 Image("Settings")
             }
+            Button(action: {
+                uid = ""
+                next = Constants.Views.login
+            }) {
+                Image("Log Out")
+            }
         }.onAppear {
             getName(uid: uid) {
                 (resultName) in

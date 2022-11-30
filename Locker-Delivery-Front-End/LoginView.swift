@@ -39,12 +39,6 @@ struct LoginView: View {
                     TextField("Password", text: $password).font(Font.TextField).frame(width: 300, alignment: .center)
                         .foregroundColor(.black)
                 }
-                Button(action: {
-                    print("button pressed")
-                }) {
-                    Text("Forgot Password?").font(Font.ForgetPasswordText)
-                        .frame(width: 300, alignment: .center)
-                }
                 
                 Button (action: {
                     Login()

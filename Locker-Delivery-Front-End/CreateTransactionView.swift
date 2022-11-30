@@ -11,6 +11,7 @@ struct CreateTransactionView: View {
     
     @Binding var next: Int
     @Binding var uid: String
+    @Binding var currTransaction: Transaction
     
     @State private var item: String = ""
     @State private var receiver_email: String = ""
@@ -67,9 +68,9 @@ struct CreateTransactionView: View {
                             .frame(width: 300, alignment: .leading)
                     }
                     Button (action: {
-                        locker = "Buckhead"
+                        locker = "Midtown ATL"
                     }) {
-                        Text("Buckhead").font(Font.SubTitle2)
+                        Text("Midtown ATL").font(Font.SubTitle2)
                             .frame(width: 300, alignment: .leading)
                     }
                 } label: {
@@ -82,29 +83,12 @@ struct CreateTransactionView: View {
             VStack(spacing:40) {
                 // Update this when Adding transaction to database
                 Button (action: {
-                    Task {
-                        let fail = await postTransaction(sender_id: uid, receiver_email: receiver_email, item: item, locker: locker)
-                        if fail == nil {
-                            next = Constants.Views.main
-                            
-                            let email = Email(toAddress: receiver_email, subject: "New DeLocker Transaction: \(item)",
-                                              body: "Hi! I have started an exchange for \(item) at the \(locker) locker. Please Pick up item within the next 3 days!")
-                            
-                            email.sendEmail()
-                            
-                        } else {
-                            if let fail = fail {
-                                createFailed = true;
-                                errorMessage = fail;
-                            }
-                        }
-                    }
+                    currTransaction.receiver_email = receiver_email
+                    currTransaction.item = item
+                    currTransaction.locker_location = locker
+                    next = Constants.Views.payment
                 }) {
-                    Image("CreateTransaction").alert("Login Failed", isPresented: $createFailed, actions: {
-                        Button("OK", role: .cancel) {}
-                }, message: {
-                    Text(errorMessage)
-                })
+                    Image("CreateTransaction")
                 }
                 
                 Button (action: {
