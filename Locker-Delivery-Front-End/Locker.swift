@@ -87,7 +87,7 @@ func unlockReservedLocker(locker_id: String, locker_location: String) async -> S
 }
 
 func getLockerAddress(locker: String) -> String {
-    if (locker == "Georgia Tech") {
+    if (locker == "GaTech") {
         return "North Ave NW"
     } else if (locker == "Downtown ATL") {
         return "Peachtree St NE"

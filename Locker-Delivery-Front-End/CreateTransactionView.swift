@@ -56,9 +56,9 @@ struct CreateTransactionView: View {
                     .frame(width: 300, alignment: .leading)
                 Menu {
                     Button (action: {
-                        locker = "Georgia Tech"
+                        locker = "GaTech"
                     }) {
-                        Text("Georgia Tech").font(Font.SubTitle2)
+                        Text("GaTech").font(Font.SubTitle2)
                             .frame(width: 300, alignment: .leading)
                     }
                     Button (action: {
