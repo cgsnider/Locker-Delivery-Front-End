@@ -69,6 +69,10 @@ struct DropOffLocationView: View {
                         Task {
                             let fail = await completeDropOffTransaction(transaction: transaction)
                             if fail == nil {
+                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Approved",
+                                                  body: "Hello! I just dropped off your \(transaction.item) at the locker.")
+                                
+                                email.sendEmail()
                                 next = Constants.Views.dropoffhome
                             } else {
                                 if let fail = fail {
