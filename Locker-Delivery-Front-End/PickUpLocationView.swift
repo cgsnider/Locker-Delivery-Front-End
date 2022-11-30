@@ -55,9 +55,6 @@ struct PickUpLocationView: View {
             VStack {
                 Text("Contact Info:").font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
-                Text(transaction.sender_number).font(Font.SubTitle)
-                    .frame(width: 300, alignment: .center)
-                    .foregroundColor(Color.gray)
                 Text(transaction.sender_email).font(Font.SubTitle)
                     .frame(width: 300, alignment: .center)
                     .foregroundColor(Color.gray)
