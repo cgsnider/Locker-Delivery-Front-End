@@ -49,7 +49,9 @@ struct SettingsView: View {
                 Image("Change Password")
             }
             Button(action: {
-
+                let email = Email(toAddress: "cs4261tmcp@gmail.com" , subject: "Support Ticket:", body: "")
+                
+                email.sendEmail()
             }) {
                 Image("Contact Support")
             }
