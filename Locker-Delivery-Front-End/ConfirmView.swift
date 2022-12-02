@@ -97,11 +97,23 @@ struct ConfirmView: View {
                             }
                         }
                     } else {
-                        let email = Email(toAddress: "cs4261tmcp@gmail.com", subject: "Pickup Support: \(transaction.item)",
-                                          body: "I need support for my pickup")
-                        
-                        email.sendEmail()
-                        
+                        Task {
+                            let fail = await completeDropOffTransaction(transaction: transaction)
+                            if fail == nil {
+                                
+                                let email = Email(toAddress: "cs4261tmcp@gmail.com", subject: "Pickup Support: \(transaction.item)",
+                                                  body: "I need support for my pickup")
+                                
+                                email.sendEmail()
+                                
+                                next = Constants.Views.pickuphome
+                            } else {
+                                if let fail = fail {
+                                    confirmFailed = true;
+                                    errorMessage = fail;
+                                }
+                            }
+                        }
                         next = Constants.Views.pickuphome
                     }
                 }) {

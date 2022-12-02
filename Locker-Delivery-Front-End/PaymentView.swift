@@ -32,7 +32,7 @@ struct PaymentView: View {
                             next = Constants.Views.dropoffhome
                             
                             let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLocker Transaction: \(currTransaction.item)",
-                                              body: "Hi! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Pick up item within the next" + reserved + " days!")
+                                              body: "Hi! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Confirm the item so I can drop it off.")
                             
                             email.sendEmail()
                             
@@ -63,7 +63,7 @@ struct PaymentView: View {
                             next = Constants.Views.dropoffhome
                             
                             let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLocker Transaction: \(currTransaction.item)",
-                                              body: "Hi! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Pick up item within the next" + reserved + " days!")
+                                              body: "Hi! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Confirm the item so I can drop it off.")
                             
                             email.sendEmail()
                             
@@ -94,7 +94,7 @@ struct PaymentView: View {
                             next = Constants.Views.dropoffhome
                             
                             let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLocker Transaction: \(currTransaction.item)",
-                                              body: "Hi! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Pick up item within the next" + reserved + " days!")
+                                              body: "Hello! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Confirm the item so I can drop it off.")
                             
                             email.sendEmail()
                             
@@ -112,6 +112,11 @@ struct PaymentView: View {
                     Text(errorMessage)
                 })
                 }
+            }
+            Button (action: {
+                next = Constants.Views.createTransaction
+            }) {
+                Image("Back")
             }
         }
     }
