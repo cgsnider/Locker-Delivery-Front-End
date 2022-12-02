@@ -22,7 +22,7 @@ struct PaymentView: View {
     var body: some View {
         VStack(spacing: 80) {
             VStack(spacing: 30) {
-                Text("Reserve for 3 Days: $9.99").font(Font.SubTitle)
+                Text("Reserve for up to 3 Days: $9.99").font(Font.SubTitle)
                     .frame(width: 300, alignment: .leading)
                 Button (action: {
                     reserved = "3 days"
@@ -53,7 +53,7 @@ struct PaymentView: View {
             }
             
             VStack(spacing: 30) {
-                Text("Reserve for 7 Days: $14.99").font(Font.SubTitle)
+                Text("Reserve for up to 7 Days: $14.99").font(Font.SubTitle)
                     .frame(width: 300, alignment: .leading)
                 Button (action: {
                     reserved = "7 days"
@@ -84,7 +84,7 @@ struct PaymentView: View {
             }
             
             VStack(spacing: 30) {
-                Text("Reserve for 14 Days: $24.99").font(Font.SubTitle)
+                Text("Reserve for up to 14 Days: $24.99").font(Font.SubTitle)
                     .frame(width: 300, alignment: .leading)
                 Button (action: {
                     reserved = "14 days"

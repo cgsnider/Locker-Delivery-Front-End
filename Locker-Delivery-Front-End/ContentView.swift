@@ -11,7 +11,7 @@ struct ContentView: View {
     
    
     @Binding var uid: String
-    @State var curr = Constants.Views.main
+    @State var curr = Constants.Views.login
     @State var currTransaction = blankTransaction()
     
     
