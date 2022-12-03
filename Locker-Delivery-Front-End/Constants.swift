@@ -23,6 +23,7 @@ struct Constants {
         static let confirm = 9
         static let dropoff = 10
         static let payment = 11
+        static let map = 12
         
     }
     
