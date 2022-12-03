@@ -31,7 +31,7 @@ struct PaymentView: View {
                         if fail == nil {
                             next = Constants.Views.dropoffhome
                             
-                            let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLocker Transaction: \(currTransaction.item)",
+                            let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLock Transaction: \(currTransaction.item)",
                                               body: "Hi! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Confirm the item so I can drop it off.")
                             
                             email.sendEmail()
@@ -62,7 +62,7 @@ struct PaymentView: View {
                         if fail == nil {
                             next = Constants.Views.dropoffhome
                             
-                            let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLocker Transaction: \(currTransaction.item)",
+                            let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLock Transaction: \(currTransaction.item)",
                                               body: "Hi! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Confirm the item so I can drop it off.")
                             
                             email.sendEmail()
@@ -93,7 +93,7 @@ struct PaymentView: View {
                         if fail == nil {
                             next = Constants.Views.dropoffhome
                             
-                            let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLocker Transaction: \(currTransaction.item)",
+                            let email = Email(toAddress: currTransaction.receiver_email, subject: "New DeLock Transaction: \(currTransaction.item)",
                                               body: "Hello! I have started an exchange for \(currTransaction.item) at the \(currTransaction.locker_location) locker. Please Confirm the item so I can drop it off.")
                             
                             email.sendEmail()

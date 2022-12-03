@@ -36,7 +36,7 @@ struct ConfirmView: View {
                             let fail = await confirmTransaction(transaction: transaction)
                             if fail == nil {
                                 
-                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Approved",
+                                let email = Email(toAddress: transaction.sender_email, subject: "Transaction Approved",
                                                   body: "Hello! I'll pick up \(transaction.item) from the locker.")
                                 
                                 email.sendEmail()
@@ -55,7 +55,7 @@ struct ConfirmView: View {
                             let fail = await completeTransaction(transaction: transaction)
                             if fail == nil {
                                 
-                                let email = Email(toAddress: transaction.sender_email, subject: "Pickup Approved",
+                                let email = Email(toAddress: transaction.sender_email, subject: "Item Successfully picked up",
                                                   body: "Hello! I just picked up the \(transaction.item) from the locker at \(transaction.locker_location)")
                                 
                                 email.sendEmail()
