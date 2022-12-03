@@ -36,7 +36,7 @@ struct LoginView: View {
                 
                 ZStack {
                     Image("Textbox")
-                    TextField("Password", text: $password).font(Font.TextField).frame(width: 300, alignment: .center)
+                    SecureField("Password", text: $password).font(Font.TextField).frame(width: 300, alignment: .center)
                         .foregroundColor(.black)
                 }
                 
