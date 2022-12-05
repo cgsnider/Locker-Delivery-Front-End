@@ -41,6 +41,8 @@ struct ContentView: View {
             SettingsView(next: $curr, uid: $uid)
         } else if curr == Constants.Views.payment {
             PaymentView(next: $curr, uid: $uid, currTransaction: $currTransaction)
+        } else if curr == Constants.Views.map {
+            MapView()//next: $curr, uid:$uid, currTransaction: $currTransaction)
         }
             
         

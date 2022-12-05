@@ -7,6 +7,8 @@
 		<string>Inter-Regular.otf</string>
 		<string>Inter-SemiBold.otf</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Use to get directions to the locker</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161781B7293D8D2A008F5E89 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161781B6293D8D2A008F5E89 /* MapView.swift */; };
 		5616CDDB28FE05EC000D196C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDA28FE05EC000D196C /* Constants.swift */; };
 		5616CDDD28FE0C56000D196C /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDC28FE0C56000D196C /* Utility.swift */; };
 		5616CDDF28FE1074000D196C /* PrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5616CDDE28FE1074000D196C /* PrintView.swift */; };
@@ -85,6 +86,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		161781B6293D8D2A008F5E89 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		5616CDDA28FE05EC000D196C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5616CDDC28FE0C56000D196C /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		5616CDDE28FE1074000D196C /* PrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				5616CDDC28FE0C56000D196C /* Utility.swift */,
 				5616CDDE28FE1074000D196C /* PrintView.swift */,
 				56FF2F11293305A50025073A /* EmailNotification.swift */,
+				161781B6293D8D2A008F5E89 /* MapView.swift */,
 			);
 			path = "Locker-Delivery-Front-End";
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				DE59E5CC28F7276B0042D9F6 /* SignUpView.swift in Sources */,
 				DE02EEFE291C117800D6A1F9 /* ConfirmView.swift in Sources */,
 				DE02EEFC2916D23400D6A1F9 /* CreateTransactionView.swift in Sources */,
+				161781B7293D8D2A008F5E89 /* MapView.swift in Sources */,
 				DECD3927292FEB2000BA141E /* User.swift in Sources */,
 				DE8D2D0328EF6F3F0027839E /* Locker_Delivery_Front_EndApp.swift in Sources */,
 				DE5E110028F081A900A6BF52 /* FontStyles.swift in Sources */,
